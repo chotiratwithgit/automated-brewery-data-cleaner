@@ -50,19 +50,21 @@ This repository demonstrates skills in **API integration**, **Data Cleaning/Tran
    ```
 
 ## 📂 File Structure
-├── main.py                # Main entry point to trigger the entire pipeline
-├── getAPI.py              # Script for API extraction and raw JSON storage
-├── jsontocsv.py           # Data cleaning, transformation, and format conversion
-├── load_to_cloud.py       # AWS S3 upload logic and Telegram notification handler
-├── .env                   # (Excluded) Environment variables for credentials
-├── .gitignore             # Git exclusion rules for security and system junk
-├── requirements.txt       # List of Python dependencies (Pandas, Boto3, etc.)
+```text
+Project Data Validate/
+├── main.py                # 🚀 Main entry point to trigger the entire pipeline
+├── getAPI.py              # 📥 Script for API extraction and raw JSON storage
+├── jsontocsv.py           # 🛠️ Data cleaning, transformation, and format conversion
+├── load_to_cloud.py       # ☁️ AWS S3 upload logic and Telegram notification handler
+├── .env                   # 🔐 (Excluded) Environment variables for credentials
+├── .gitignore             # 🚫 Git exclusion rules for security and system junk
+├── requirements.txt       # 📦 List of Python dependencies (Pandas, Boto3, etc.)
 │
-├── raw_data/              # Directory for ingested raw JSON files
-├── cleaned_data/          # Directory for processed CSV files
-└── data_parquet_to_upload/ # Directory for optimized Parquet files. 
-                            # Implement data quality checks before loading to AWS S3.
-                            
+├── raw_data/              # 📂 Directory for ingested raw JSON files
+├── cleaned_data/          # 📂 Directory for processed CSV files
+└── data_parquet_to_upload/ # 📂 Directory for optimized Parquet files
+                            # Note: Implement data quality checks before S3 loading.
+ ```                           
 ## 🏃 How to Run                            
 Execute the main.py script to trigger the end-to-end pipeline:
 python main.py
