@@ -1,20 +1,55 @@
-🍺 Automated Brewery Data Pipeline
+##🍺 Automated Brewery Data Pipeline
 
+## 📌 Project Overview
 This project is a comprehensive, automated Data Pipeline designed to fetch brewery data from an Open API, perform data cleaning and transformation, convert datasets into optimized storage formats (CSV/Parquet), and securely upload the results to AWS S3 with integrated Telegram notifications.
 
-🚀 Key Features
+This repository demonstrates skills in **API integration**, **Data Cleaning/Transformation**, **Cloud Storage Operations (AWS)**,And securely upload the results to AWS S3 with integrated Telegram notifications
 
-Data Extraction: Automated ingestion from the Open Brewery API.
+## 🛠️ Architecture
+1. **Extract**: Fetch raw JSON data from Open Brewery DB API (`getAPI.py`).
+2. **Transform**: Clean data, handle missing values, and convert JSON to CSV format (`jsontocsv.py`).
+3. **Load**: Read the cleaned CSV, convert it to a highly compressed Parquet format, and upload it to an AWS S3 bucket (`load_to_cloud.py`).
+4. **Monitoring & Alerting**: Real-time success/failure status updates via Telegram Bot API
 
-Data Transformation: Data cleaning and schema enforcement using Pandas, including JSON to CSV/Parquet conversion for optimized performance.
+## 🚀 Tech Stack
+- **Python**: Core programming language
+- **Pandas**: Data manipulation and cleaning
+- **Boto3**: AWS SDK for Python (uploading to S3)
+- **PyArrow**: Parquet file conversion
+- **python-dotenv**: Environment variable management
+- **Telegram Bot API**: Monitoring & Alerting status updates
 
-Cloud Integration: Secure and scalable storage on AWS S3 for data lake readiness.
 
-Monitoring & Alerting: Real-time success/failure status updates via Telegram Bot API.
 
-📁 Project Structure
+## ⚙️ Setup & Installation
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/chotiratwithgit/automated-brewery-data-cleaner.git
+   cd automated-brewery-data-cleaner
+   ```
 
-Project Data Validate/
+2. **Create and activate a virtual environment**:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Environment Variables**:
+   Create a `.env` file in the root directory and provide the following credentials:
+   ```ini
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   S3_BUCKET_NAME=your_bucket_name
+   TELEGRAM_TOKEN=your_bot_token
+   TELEGRAM_CHAT_ID=your_chat_id
+   ```
+
+## 📂 File Structure
 ├── main.py                # Main entry point to trigger the entire pipeline
 ├── getAPI.py              # Script for API extraction and raw JSON storage
 ├── jsontocsv.py           # Data cleaning, transformation, and format conversion
@@ -27,54 +62,20 @@ Project Data Validate/
 ├── cleaned_data/          # Directory for processed CSV files
 └── data_parquet_to_upload/ # Directory for optimized Parquet files. 
                             # Implement data quality checks before loading to AWS S3.
-
-
-🛠️ Tech Stack
-
-Language: Python 3.x
-
-Data Processing: Pandas, Pyarrow
-
-Cloud Services: AWS S3 (via Boto3 SDK)
-
-Communications: Telegram Bot API
-
-Utilities: Requests, Python-dotenv
-
-⚙️ Setup & Installation
-
-Clone the repository:
-
-git clone [https://github.com/chotiratwithgit/automated-brewery-data-cleaner.git](https://github.com/chotiratwithgit/automated-brewery-data-cleaner.git)
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Configuration: Create a .env file in the root directory and provide the following credentials:
-
-AWS_ACCESS_KEY=your_access_key
-AWS_SECRET_KEY=your_secret_key
-S3_BUCKET_NAME=your_bucket_name
-TELEGRAM_TOKEN=your_bot_token
-TELEGRAM_CHAT_ID=your_chat_id
-
-
-🏃 How to Run
-
+                            
+## 🏃 How to Run                            
 Execute the main.py script to trigger the end-to-end pipeline:
-
 python main.py
 
-
-📊 Data Pipeline Workflow
+## 📊Data Pipeline Workflow
 
 Extract: Executes getAPI.py to fetch and store raw brewery data in JSON format.
-
 Transform: Executes jsontocsv.py to handle missing values, enforce data types, and generate Parquet files.
-
 Load: Executes load_to_cloud.py to sync the Parquet files to AWS S3 and dispatch a status notification to Telegram.
 
 Note: Ensure that .env is listed in .gitignore to prevent leaking sensitive AWS and Telegram credentials.
+
+## 📝 Future Improvements
+- Automate pipeline execution using Airflow or cron jobs.
+- Add logging and error alerting capabilities.
+- Implement data quality checks before loading to AWS S3.
